@@ -48,7 +48,7 @@ ENTRYPOINT /usr/bin/tail -f /dev/null
 ```
 ###### сбилдим образ с нужной нам папкой jenkins_data
 ```bash
-docker build -t liberstein1/jenkinsdata06082021:1.2 .
+docker build -t liberstein1/jenkinsdata:1.0 .
 ```
 ###### Проверим, что образ появился:
 ```bash
@@ -58,7 +58,7 @@ docker images
 ###### Примерный вывод:
 ```bash
 REPOSITORY                        TAG                 IMAGE ID       CREATED         SIZE
-liberstein1/jenkinsdata06082021   1.2                 ac86eb2767da   1 hours ago    494MB
+liberstein1/jenkinsdata           1.0                 ac86eb2767da   1 hours ago    494MB
 ```
 
 #### Приведем docker-compose.yaml к виду:
@@ -78,7 +78,7 @@ services:
     volumes_from:
       - jenkins-data
   jenkins-data:
-    image: liberstein1/jenkinsdata06082021:1.2
+    image: liberstein1/jenkinsdata:1.0
     container_name: jenkins-data
     network_mode: bridge
 ```
@@ -99,7 +99,7 @@ docker ps --format "{{.ID}}\t{{.Size}}\t{{.Image}}"
 ###### Примерный вывод:
 ```bash
 3f6181cceee6	3.35MB (virtual 684MB)	jenkins/jenkins:2.289.3-lts-jdk11
-abd573947992	0B (virtual 494MB)	liberstein1/jenkinsdata06082021:1.2
+abd573947992	0B (virtual 494MB)	liberstein1/jenkinsdata:1.0
 ```
 
 Можно временно переименовать папку jenkins_data, которая была ранее создана при старте Jenkins в текущей директории и снова перезапуститься. Так мы убедимся, что не привязываемся к локальным настройкам.
@@ -122,3 +122,4 @@ docker push <your image name>
 [link]: <https://otus.ru/learning/102096/>
 [Jenkins-docker-compose]: <https://adamtheautomator.com/jenkins-docker/>
 [docker-hub]: <https://hub.docker.com/>
+[my-image]: <https://github.com/liberstein/JenkinsImageTutorial/>
