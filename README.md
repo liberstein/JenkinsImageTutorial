@@ -89,7 +89,7 @@ services:
 docker-compose down
 docker-compose up -d
 ```
-###### проверим наличие активных контейнеровлюбой из команд на выбор:
+###### проверим наличие активных контейнеров любой из команд на выбор:
 ```bash
 docker ps
 docker ps --format "{{json .}}"
